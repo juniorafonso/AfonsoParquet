@@ -1,0 +1,230 @@
+{
+  "site": {
+    "title": "Afonso Parquet - Parquet Renovation in Geneva",
+    "description": "Specialist in parquet renovation and installation in Geneva and French-speaking Switzerland. Sanding, sealing, installation and repair.",
+    "keywords": "parquet, sanding, installation, renovation, sealing, Geneva, French-speaking Switzerland, baseboard, repair"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "realisations": "Projects",
+    "about": "About",
+    "devis": "Request a quote",
+    "contact": "Contact"
+  },
+  "footer": {
+    "company": "Afonso Parquet",
+    "description": "Parquet renovation specialist in Geneva",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "followUs": "Follow us",
+    "rights": "All rights reserved"
+  },
+  "home": {
+    "hero": {
+      "title": "Parquet Renovation and Installation",
+      "subtitle": "Your specialist in Geneva and French-speaking Switzerland",
+      "cta": "Request a quote"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Complete expertise for your parquet floors"
+    },
+    "realisations": {
+      "title": "Our Projects",
+      "subtitle": "Discover our recent work",
+      "viewAll": "View all projects"
+    },
+    "cta": {
+      "title": "Have a project in mind?",
+      "subtitle": "Get your free quote in less than 24 hours",
+      "button": "Request a free quote"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Quality services for all your parquet needs",
+    "poncage": {
+      "title": "Parquet Sanding",
+      "desc": "Complete renovation of your parquet with professional sanding and sealing."
+    },
+    "pose": {
+      "title": "Parquet Installation",
+      "desc": "Installation of solid, engineered or laminate parquet according to your needs."
+    },
+    "plinthe": {
+      "title": "Baseboard Installation",
+      "desc": "Perfect finishes with the installation of baseboards matching your parquet."
+    },
+    "reparation": {
+      "title": "Repair",
+      "desc": "Repair of damaged parquet, replacement of planks and touch-ups."
+    },
+    "vitrification": {
+      "title": "Sealing",
+      "desc": "Durable protection of your parquet with quality sealing."
+    }
+  },
+  "devis": {
+    "title": "Request a Quote",
+    "subtitle": "Describe your project and receive a response within 24h",
+    "step1": "Your project",
+    "step2": "Your contact details",
+    "continue": "Continue",
+    "submit": "Send request",
+    "success": {
+      "title": "Request sent!",
+      "message": "We have received your quote request. We will respond within 24 hours.",
+      "back": "Back to home"
+    },
+    "fields": {
+      "npa": "Postal code",
+      "buildingType": "Type of building",
+      "buildingTypes": {
+        "maison": "House",
+        "appart_vide": "Empty apartment",
+        "appart_habite": "Occupied apartment",
+        "bureau": "Office",
+        "autre": "Other"
+      },
+      "serviceType": "Type of service",
+      "serviceTypes": {
+        "poncage": "Sanding",
+        "pose_parquet": "Parquet installation",
+        "pose_plinthe": "Baseboard installation",
+        "reparation": "Repair",
+        "autres": "Other"
+      },
+      "parquetType": "Type of parquet",
+      "parquetTypes": {
+        "massif": "Solid",
+        "contrecolle": "Engineered",
+        "stratifie": "Laminate",
+        "ne_sais_pas": "Don't know"
+      },
+      "poseType": "Type of installation",
+      "poseTypes": {
+        "flottant": "Floating parquet",
+        "cloue": "Nailed parquet",
+        "colle": "Glued parquet",
+        "ne_sais_pas": "Don't know"
+      },
+      "surface": "Surface area (m²)",
+      "delais": "What is your timeline?",
+      "delaisOptions": {
+        "a_definir": "To be defined",
+        "rapidement": "Quickly",
+        "dans_le_mois": "Within a month"
+      },
+      "message": "Work description",
+      "photos": "Photos / Videos",
+      "photosHelp": "You can send up to 10 photos and 2 videos (max 100 MB per video)",
+      "externalLink": "Or external link",
+      "externalLinkHelp": "WeTransfer, Google Drive, YouTube link, etc.",
+      "civilite": "Title",
+      "civiliteOptions": {
+        "M": "Mr",
+        "Mme": "Ms"
+      },
+      "prenom": "First name",
+      "nom": "Last name",
+      "email": "E-mail",
+      "phone": "Phone",
+      "consent": "By sending this form, I agree to be contacted and to have my data processed in accordance with the {privacyLink}.",
+      "privacyLink": "privacy policy"
+    },
+    "errors": {
+      "required": "This field is required",
+      "email": "Invalid email address",
+      "npa": "Invalid postal code",
+      "serviceType": "Please select at least one service",
+      "phone": "Invalid phone number",
+      "fileSize": "File too large",
+      "fileType": "File type not allowed",
+      "totalSize": "Total file size exceeded"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Log in",
+      "error": "Incorrect credentials"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "devis": "Quote requests",
+      "projects": "Projects",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "newDevis": "New requests",
+      "inProgress": "In progress",
+      "done": "Completed"
+    },
+    "devis": {
+      "title": "Quote Requests",
+      "new": "New",
+      "inProgress": "In progress",
+      "done": "Done",
+      "viewDetails": "View details",
+      "markAs": "Mark as",
+      "delete": "Delete",
+      "deleteOld": "This request is over 90 days old. Consider deletion.",
+      "details": {
+        "title": "Request details",
+        "date": "Date",
+        "status": "Status",
+        "contact": "Contact",
+        "project": "Project",
+        "media": "Photos and videos"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "add": "Add project",
+      "edit": "Edit",
+      "delete": "Delete",
+      "publish": "Publish",
+      "unpublish": "Unpublish"
+    },
+    "settings": {
+      "title": "Settings",
+      "changePassword": "Change password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "save": "Save"
+    }
+  },
+  "legal": {
+    "title": "Legal Notice",
+    "privacy": "Privacy Policy"
+  },
+  "cookie": {
+    "title": "This site uses cookies",
+    "message": "We use cookies to improve your experience and analyze traffic. By accepting, you consent to the use of Google Analytics and Meta Pixel.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "learnMore": "Learn more"
+  },
+  "common": {
+    "readMore": "Learn more",
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Operation successful",
+    "required": "Required",
+    "optional": "Optional"
+  }
+}

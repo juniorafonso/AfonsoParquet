@@ -1,0 +1,56 @@
+<% layout('layout') %>
+
+<div class="container my-5">
+  <h1 class="fw-bold text-center mb-5"><%= t('nav.about') %></h1>
+  
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <% if (locale === 'fr') { %>
+        <p class="lead">
+          Afonso Parquet est votre spécialiste de la rénovation et de la pose de parquet à Genève et dans toute la Suisse romande.
+        </p>
+        <p>
+          Avec plusieurs années d'expérience dans le domaine, nous mettons notre expertise au service de vos projets résidentiels et commerciaux. Que ce soit pour rénover un parquet ancien ou installer un nouveau sol, nous garantissons un travail soigné et des finitions impeccables.
+        </p>
+        <h3 class="fw-bold mt-5 mb-3">Notre Expertise</h3>
+        <ul>
+          <li><strong>Ponçage professionnel</strong> : Rénovation complète de vos parquets avec un ponçage de qualité</li>
+          <li><strong>Pose de parquet</strong> : Installation de parquet massif, contrecollé ou stratifié</li>
+          <li><strong>Pose de plinthe</strong> : Finitions parfaites pour un rendu professionnel</li>
+          <li><strong>Réparation</strong> : Remise en état de parquets abîmés</li>
+          <li><strong>Vitrification</strong> : Protection durable de vos sols</li>
+        </ul>
+        <h3 class="fw-bold mt-5 mb-3">Zone d'Intervention</h3>
+        <p>
+          Nous intervenons à Genève et dans toute la Suisse romande (Vaud, Valais, Neuchâtel, Fribourg, Jura).
+        </p>
+      <% } else { %>
+        <p class="lead">
+          Afonso Parquet is your specialist in parquet renovation and installation in Geneva and throughout French-speaking Switzerland.
+        </p>
+        <p>
+          With several years of experience in the field, we put our expertise at the service of your residential and commercial projects. Whether it's renovating an old parquet floor or installing a new one, we guarantee careful work and impeccable finishes.
+        </p>
+        <h3 class="fw-bold mt-5 mb-3">Our Expertise</h3>
+        <ul>
+          <li><strong>Professional sanding</strong>: Complete renovation of your parquet floors with quality sanding</li>
+          <li><strong>Parquet installation</strong>: Installation of solid, engineered or laminate parquet</li>
+          <li><strong>Baseboard installation</strong>: Perfect finishes for a professional result</li>
+          <li><strong>Repair</strong>: Restoration of damaged parquet floors</li>
+          <li><strong>Sealing</strong>: Durable protection for your floors</li>
+        </ul>
+        <h3 class="fw-bold mt-5 mb-3">Service Area</h3>
+        <p>
+          We operate in Geneva and throughout French-speaking Switzerland (Vaud, Valais, Neuchâtel, Fribourg, Jura).
+        </p>
+      <% } %>
+      
+      <div class="text-center mt-5 bg-light p-4 rounded">
+        <h4 class="fw-bold mb-3"><%= t('home.cta.title') %></h4>
+        <a href="<%= url('/devis') %>" class="btn btn-primary btn-lg">
+          <i class="fas fa-file-invoice me-2"></i><%= t('home.cta.button') %>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

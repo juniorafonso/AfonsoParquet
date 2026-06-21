@@ -1,0 +1,87 @@
+<% layout('layout') %>
+
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <h1 class="fw-bold"><%= t('services.title') %></h1>
+    <p class="lead text-muted"><%= t('services.subtitle') %></p>
+  </div>
+  
+  <!-- Ponçage -->
+  <section id="poncage" class="mb-5 pb-5 border-bottom">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <i class="fas fa-tools fa-4x text-primary mb-3"></i>
+        <h2 class="fw-bold"><%= t('services.poncage.title') %></h2>
+        <p class="lead"><%= t('services.poncage.desc') %></p>
+        <a href="<%= url('/devis') %>" class="btn btn-primary">
+          <%= t('nav.devis') %>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pose de Parquet -->
+  <section id="pose" class="mb-5 pb-5 border-bottom">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <i class="fas fa-th-large fa-4x text-primary mb-3"></i>
+        <h2 class="fw-bold"><%= t('services.pose.title') %></h2>
+        <p class="lead"><%= t('services.pose.desc') %></p>
+        <a href="<%= url('/devis') %>" class="btn btn-primary">
+          <%= t('nav.devis') %>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pose de Plinthe -->
+  <section id="plinthe" class="mb-5 pb-5 border-bottom">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <i class="fas fa-ruler-combined fa-4x text-primary mb-3"></i>
+        <h2 class="fw-bold"><%= t('services.plinthe.title') %></h2>
+        <p class="lead"><%= t('services.plinthe.desc') %></p>
+        <a href="<%= url('/devis') %>" class="btn btn-primary">
+          <%= t('nav.devis') %>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Réparation -->
+  <section id="reparation" class="mb-5 pb-5 border-bottom">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <i class="fas fa-wrench fa-4x text-primary mb-3"></i>
+        <h2 class="fw-bold"><%= t('services.reparation.title') %></h2>
+        <p class="lead"><%= t('services.reparation.desc') %></p>
+        <a href="<%= url('/devis') %>" class="btn btn-primary">
+          <%= t('nav.devis') %>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Vitrification -->
+  <section id="vitrification" class="mb-5">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <i class="fas fa-shield-alt fa-4x text-primary mb-3"></i>
+        <h2 class="fw-bold"><%= t('services.vitrification.title') %></h2>
+        <p class="lead"><%= t('services.vitrification.desc') %></p>
+        <a href="<%= url('/devis') %>" class="btn btn-primary">
+          <%= t('nav.devis') %>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <div class="text-center bg-light p-5 rounded">
+    <h3 class="fw-bold mb-3"><%= t('home.cta.title') %></h3>
+    <p class="lead mb-4"><%= t('home.cta.subtitle') %></p>
+    <a href="<%= url('/devis') %>" class="btn btn-primary btn-lg">
+      <i class="fas fa-file-invoice me-2"></i><%= t('home.cta.button') %>
+    </a>
+  </div>
+</div>

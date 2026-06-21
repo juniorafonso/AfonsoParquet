@@ -1,0 +1,183 @@
+<% layout('admin/layout-admin') %>
+
+<div class="mb-4">
+  <a href="/admin/dashboard" class="btn btn-outline-secondary">
+    <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+  </a>
+</div>
+
+<div class="card">
+  <div class="card-header bg-white">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="h4 mb-0">Devis #<%= devis.id %></h2>
+      
+      <!-- Status Selector -->
+      <div class="dropdown">
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown">
+          <% if (devis.status === 'new') { %>
+          <span class="badge bg-primary">New</span>
+          <% } else if (devis.status === 'in_progress') { %>
+          <span class="badge bg-warning text-dark">In Progress</span>
+          <% } else if (devis.status === 'done') { %>
+          <span class="badge bg-success">Done</span>
+          <% } %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+          <li><a class="dropdown-item" href="#" onclick="updateStatus('new')">New</a></li>
+          <li><a class="dropdown-item" href="#" onclick="updateStatus('in_progress')">In Progress</a></li>
+          <li><a class="dropdown-item" href="#" onclick="updateStatus('done')">Done</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <!-- Contact Info -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h5 class="text-muted mb-3">Contact Information</h5>
+        <table class="table table-sm">
+          <tr>
+            <th width="150">Civilité:</th>
+            <td><%= devis.civilite %></td>
+          </tr>
+          <tr>
+            <th>Name:</th>
+            <td><%= devis.prenom %> <%= devis.nom %></td>
+          </tr>
+          <tr>
+            <th>Email:</th>
+            <td><a href="mailto:<%= devis.email %>"><%= devis.email %></a></td>
+          </tr>
+          <tr>
+            <th>Phone:</th>
+            <td><a href="tel:<%= devis.phone %>"><%= devis.phone %></a></td>
+          </tr>
+          <tr>
+            <th>Submitted:</th>
+            <td><%= devis.createdAt.toLocaleString('fr-CH') %></td>
+          </tr>
+          <tr>
+            <th>Locale:</th>
+            <td><%= devis.locale.toUpperCase() %></td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="col-md-6">
+        <h5 class="text-muted mb-3">Project Details</h5>
+        <table class="table table-sm">
+          <tr>
+            <th width="150">NPA:</th>
+            <td><%= devis.npa %></td>
+          </tr>
+          <% if (devis.buildingType) { %>
+          <tr>
+            <th>Building Type:</th>
+            <td><%= devis.buildingType %></td>
+          </tr>
+          <% } %>
+          <tr>
+            <th>Services:</th>
+            <td>
+              <% const services = devis.serviceTypes || []; %>
+              <%= services.join(', ') %>
+            </td>
+          </tr>
+          <% if (devis.parquetType) { %>
+          <tr>
+            <th>Parquet Type:</th>
+            <td><%= devis.parquetType %></td>
+          </tr>
+          <% } %>
+          <% if (devis.poseType) { %>
+          <tr>
+            <th>Pose Type:</th>
+            <td><%= devis.poseType %></td>
+          </tr>
+          <% } %>
+          <% if (devis.surfaceM2) { %>
+          <tr>
+            <th>Surface:</th>
+            <td><%= devis.surfaceM2 %> m²</td>
+          </tr>
+          <% } %>
+          <% if (devis.delais) { %>
+          <tr>
+            <th>Délais:</th>
+            <td><%= devis.delais %></td>
+          </tr>
+          <% } %>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Message -->
+    <% if (devis.message) { %>
+    <div class="mb-4">
+      <h5 class="text-muted mb-2">Message</h5>
+      <div class="alert alert-light">
+        <%= devis.message %>
+      </div>
+    </div>
+    <% } %>
+    
+    <!-- External Link -->
+    <% if (devis.externalLink) { %>
+    <div class="mb-4">
+      <h5 class="text-muted mb-2">External Link</h5>
+      <a href="<%= devis.externalLink %>" target="_blank" class="btn btn-outline-primary">
+        <i class="fas fa-external-link-alt me-2"></i>Open Link
+      </a>
+    </div>
+    <% } %>
+    
+    <!-- Media Gallery -->
+    <% if (devis.media && devis.media.length > 0) { %>
+    <div>
+      <h5 class="text-muted mb-3">Media (<%= devis.media.length %>)</h5>
+      <div class="row g-3">
+        <% devis.media.forEach(media => { %>
+        <div class="col-md-4 col-lg-3">
+          <% if (media.type === 'image') { %>
+          <a href="/admin/media/<%= media.id %>" target="_blank">
+            <img src="/admin/media/<%= media.id %>" class="img-fluid rounded" alt="Photo">
+          </a>
+          <% } else if (media.type === 'video') { %>
+          <video controls class="w-100 rounded">
+            <source src="/admin/media/<%= media.id %>" type="<%= media.mime %>">
+          </video>
+          <% } %>
+          <small class="text-muted d-block mt-1">
+            <%= (media.size / (1024 * 1024)).toFixed(2) %> MB
+          </small>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<script>
+  async function updateStatus(newStatus) {
+    try {
+      const response = await fetch('/admin/devis/<%= devis.id %>/status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: newStatus })
+      });
+      
+      if (response.ok) {
+        location.reload();
+      } else {
+        alert('Error updating status');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error updating status');
+    }
+  }
+</script>

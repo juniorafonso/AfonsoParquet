@@ -1,0 +1,19 @@
+# Robots.txt for Afonso Parquet
+# Generated for SEO optimization
+
+# Allow all crawlers by default
+User-agent: *
+Allow: /
+
+# Disallow admin area
+Disallow: /admin/
+Disallow: /api/
+
+# Disallow upload directory (private media)
+Disallow: /uploads/
+
+# Disallow media serving route
+Disallow: /media/
+
+# Sitemap location
+Sitemap: https://afonsoparquet.ch/sitemap.xml

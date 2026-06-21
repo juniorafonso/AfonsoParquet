@@ -1,0 +1,94 @@
+<% layout('admin/layout-admin') %>
+
+<div class="mb-4">
+  <a href="/admin/projects" class="btn btn-outline-secondary">
+    <i class="fas fa-arrow-left me-2"></i>Back to Projects
+  </a>
+</div>
+
+<div class="card">
+  <div class="card-header bg-white">
+    <h2 class="h4 mb-0"><%= project ? 'Edit' : 'New' %> Project</h2>
+  </div>
+  
+  <div class="card-body">
+    <% if (typeof errors !== 'undefined' && errors && errors.length > 0) { %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <% }); %>
+      </ul>
+    </div>
+    <% } %>
+    
+    <form method="POST" action="<%= project ? `/admin/projects/${project.id}` : '/admin/projects' %>">
+      <!-- French Title -->
+      <div class="mb-3">
+        <label for="titleFr" class="form-label">Title (French) <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="titleFr" name="titleFr" 
+               value="<%= project ? project.titleFr : (typeof formData !== 'undefined' ? formData.titleFr || '' : '') %>" required>
+      </div>
+      
+      <!-- English Title -->
+      <div class="mb-3">
+        <label for="titleEn" class="form-label">Title (English) <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="titleEn" name="titleEn" 
+               value="<%= project ? project.titleEn : (typeof formData !== 'undefined' ? formData.titleEn || '' : '') %>" required>
+      </div>
+      
+      <!-- French Description -->
+      <div class="mb-3">
+        <label for="descFr" class="form-label">Description (French) <span class="text-danger">*</span></label>
+        <textarea class="form-control" id="descFr" name="descFr" rows="4" required><%= project ? project.descFr : (typeof formData !== 'undefined' ? formData.descFr || '' : '') %></textarea>
+      </div>
+      
+      <!-- English Description -->
+      <div class="mb-3">
+        <label for="descEn" class="form-label">Description (English) <span class="text-danger">*</span></label>
+        <textarea class="form-control" id="descEn" name="descEn" rows="4" required><%= project ? project.descEn : (typeof formData !== 'undefined' ? formData.descEn || '' : '') %></textarea>
+      </div>
+      
+      <!-- Category -->
+      <div class="mb-3">
+        <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="category" name="category" 
+               value="<%= project ? project.category : (typeof formData !== 'undefined' ? formData.category || '' : '') %>" 
+               placeholder="e.g. Ponçage, Pose, Rénovation" required>
+      </div>
+      
+      <!-- Image Path -->
+      <div class="mb-3">
+        <label for="imagePath" class="form-label">Image Path</label>
+        <input type="text" class="form-control" id="imagePath" name="imagePath" 
+               value="<%= project ? project.imagePath || '' : (typeof formData !== 'undefined' ? formData.imagePath || '' : '') %>" 
+               placeholder="/uploads/projects/example.jpg">
+        <div class="form-text">
+          Relative path to image (e.g. /uploads/projects/image.jpg)
+          <br><strong>Note:</strong> You need to manually upload images to the uploads folder
+        </div>
+      </div>
+      
+      <!-- Published -->
+      <div class="mb-4">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="published" name="published" 
+                 <%= project && project.published ? 'checked' : (typeof formData !== 'undefined' && formData.published ? 'checked' : '') %>>
+          <label class="form-check-label" for="published">
+            Published (visible on website)
+          </label>
+        </div>
+      </div>
+      
+      <!-- Submit -->
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save me-2"></i>Save Project
+        </button>
+        <a href="/admin/projects" class="btn btn-outline-secondary">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

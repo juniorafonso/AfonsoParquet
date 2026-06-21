@@ -1,0 +1,133 @@
+<% layout('layout') %>
+
+<div class="container my-5">
+  <h1 class="fw-bold mb-4"><%= t('legal.privacy') %></h1>
+  
+  <% if (locale === 'fr') { %>
+    <h2 class="h4 mt-4">Collecte de données</h2>
+    <p>
+      Nous collectons uniquement les données nécessaires au traitement de votre demande de devis :
+    </p>
+    <ul>
+      <li>Nom, prénom, civilité</li>
+      <li>Adresse e-mail</li>
+      <li>Numéro de téléphone</li>
+      <li>Code postal (NPA)</li>
+      <li>Informations sur votre projet (type de bâtiment, surface, etc.)</li>
+      <li>Photos et vidéos (optionnelles)</li>
+    </ul>
+    
+    <h2 class="h4 mt-4">Utilisation des données</h2>
+    <p>
+      Vos données sont utilisées uniquement pour :
+    </p>
+    <ul>
+      <li>Traiter votre demande de devis</li>
+      <li>Vous contacter pour discuter de votre projet</li>
+      <li>Améliorer nos services</li>
+    </ul>
+    <p>
+      Nous ne vendons ni ne partageons vos données avec des tiers, sauf obligation légale.
+    </p>
+    
+    <h2 class="h4 mt-4">Conservation des données</h2>
+    <p>
+      Vos données sont conservées pendant la durée nécessaire au traitement de votre demande et conformément aux obligations légales. Passé ce délai, elles sont supprimées de manière sécurisée.
+    </p>
+    
+    <h2 class="h4 mt-4">Cookies et analytics</h2>
+    <p>
+      Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic du site :
+    </p>
+    <ul>
+      <li><strong>Google Analytics (GA4)</strong> : Analyse du trafic et du comportement des visiteurs</li>
+      <li><strong>Meta Pixel</strong> : Suivi des conversions pour nos campagnes publicitaires</li>
+      <li><strong>Cloudflare Turnstile</strong> : Protection anti-spam (sans cookies)</li>
+    </ul>
+    <p>
+      Vous pouvez accepter ou refuser ces cookies via le bandeau de consentement qui s'affiche lors de votre première visite.
+    </p>
+    
+    <h2 class="h4 mt-4">Vos droits</h2>
+    <p>
+      Conformément à la LPD (Loi fédérale sur la protection des données) et au RGPD, vous disposez des droits suivants :
+    </p>
+    <ul>
+      <li><strong>Droit d'accès</strong> : Obtenir une copie de vos données</li>
+      <li><strong>Droit de rectification</strong> : Corriger des données inexactes</li>
+      <li><strong>Droit à l'effacement</strong> : Demander la suppression de vos données</li>
+      <li><strong>Droit d'opposition</strong> : Vous opposer au traitement de vos données</li>
+    </ul>
+    <p>
+      Pour exercer ces droits, contactez-nous à l'adresse : <a href="mailto:<%= process.env.ADMIN_EMAIL %>"><%= process.env.ADMIN_EMAIL %></a>
+    </p>
+    
+    <h2 class="h4 mt-4">Sécurité</h2>
+    <p>
+      Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès, modification, divulgation ou destruction non autorisés.
+    </p>
+  <% } else { %>
+    <h2 class="h4 mt-4">Data Collection</h2>
+    <p>
+      We only collect data necessary to process your quote request:
+    </p>
+    <ul>
+      <li>Last name, first name, title</li>
+      <li>Email address</li>
+      <li>Phone number</li>
+      <li>Postal code</li>
+      <li>Project information (building type, surface area, etc.)</li>
+      <li>Photos and videos (optional)</li>
+    </ul>
+    
+    <h2 class="h4 mt-4">Data Use</h2>
+    <p>
+      Your data is used only to:
+    </p>
+    <ul>
+      <li>Process your quote request</li>
+      <li>Contact you to discuss your project</li>
+      <li>Improve our services</li>
+    </ul>
+    <p>
+      We do not sell or share your data with third parties, except as required by law.
+    </p>
+    
+    <h2 class="h4 mt-4">Data Retention</h2>
+    <p>
+      Your data is retained for the duration necessary to process your request and in accordance with legal obligations. After this period, it is securely deleted.
+    </p>
+    
+    <h2 class="h4 mt-4">Cookies and Analytics</h2>
+    <p>
+      We use cookies to improve your experience and analyze site traffic:
+    </p>
+    <ul>
+      <li><strong>Google Analytics (GA4)</strong>: Traffic and visitor behavior analysis</li>
+      <li><strong>Meta Pixel</strong>: Conversion tracking for our advertising campaigns</li>
+      <li><strong>Cloudflare Turnstile</strong>: Anti-spam protection (no cookies)</li>
+    </ul>
+    <p>
+      You can accept or refuse these cookies via the consent banner that appears during your first visit.
+    </p>
+    
+    <h2 class="h4 mt-4">Your Rights</h2>
+    <p>
+      In accordance with the LPD (Federal Act on Data Protection) and GDPR, you have the following rights:
+    </p>
+    <ul>
+      <li><strong>Right of access</strong>: Obtain a copy of your data</li>
+      <li><strong>Right of rectification</strong>: Correct inaccurate data</li>
+      <li><strong>Right to erasure</strong>: Request deletion of your data</li>
+      <li><strong>Right to object</strong>: Object to the processing of your data</li>
+    </ul>
+    <p>
+      To exercise these rights, contact us at: <a href="mailto:<%= process.env.ADMIN_EMAIL %>"><%= process.env.ADMIN_EMAIL %></a>
+    </p>
+    
+    <h2 class="h4 mt-4">Security</h2>
+    <p>
+      We implement appropriate technical and organizational measures to protect your data from unauthorized access, modification, disclosure or destruction.
+    </p>
+  <% } %>
+</div>

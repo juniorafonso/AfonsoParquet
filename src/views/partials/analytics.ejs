@@ -1,0 +1,15 @@
+<%
+/**
+ * Analytics Scripts Partial
+ * Loads GA4 and Meta Pixel IDs for cookie-consent.js
+ * Scripts are loaded by cookie-consent.js only after user consent
+ */
+%>
+<script>
+  // Make analytics IDs available to cookie-consent.js
+  window.GA4_MEASUREMENT_ID = '<%= env.GA4_MEASUREMENT_ID %>';
+  window.META_PIXEL_ID = '<%= env.META_PIXEL_ID %>';
+</script>
+
+<!-- Cookie Consent Manager -->
+<script src="/js/cookie-consent.js"></script>

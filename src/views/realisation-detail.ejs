@@ -1,0 +1,46 @@
+<% layout('layout') %>
+
+<div class="container my-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="<%= url('/') %>"><%= t('nav.home') %></a></li>
+      <li class="breadcrumb-item"><a href="<%= url('/realisations') %>"><%= t('nav.realisations') %></a></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= pageTitle %></li>
+    </ol>
+  </nav>
+  
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <% if (project.category) { %>
+      <span class="badge bg-primary mb-3"><%= project.category %></span>
+      <% } %>
+      
+      <h1 class="fw-bold mb-4"><%= pageTitle %></h1>
+      
+      <% if (project.imagePath) { %>
+      <img src="<%= project.imagePath %>" class="img-fluid rounded shadow-sm mb-4" alt="<%= pageTitle %>">
+      <% } %>
+      
+      <div class="lead">
+        <%= locale === 'fr' ? project.descFr : project.descEn %>
+      </div>
+      
+      <hr class="my-5">
+      
+      <div class="text-center bg-light p-5 rounded">
+        <h3 class="fw-bold mb-3"><%= t('home.cta.title') %></h3>
+        <p class="lead mb-4"><%= t('home.cta.subtitle') %></p>
+        <a href="<%= url('/devis') %>" class="btn btn-primary btn-lg">
+          <i class="fas fa-file-invoice me-2"></i><%= t('home.cta.button') %>
+        </a>
+      </div>
+      
+      <div class="text-center mt-4">
+        <a href="<%= url('/realisations') %>" class="btn btn-outline-secondary">
+          <i class="fas fa-arrow-left me-2"></i>
+          <%= locale === 'fr' ? 'Retour aux réalisations' : 'Back to projects' %>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,241 @@
+<% layout('layout') %>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      
+      <!-- Progress indicator -->
+      <div class="d-flex justify-content-between mb-5">
+        <div class="text-center flex-fill">
+          <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+            1
+          </div>
+          <p class="mt-2 mb-0 fw-bold"><%= t('devis.step1') %></p>
+        </div>
+        <div class="text-center flex-fill">
+          <div class="rounded-circle bg-secondary text-white d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+            2
+          </div>
+          <p class="mt-2 mb-0 text-muted"><%= t('devis.step2') %></p>
+        </div>
+      </div>
+      
+      <div class="card shadow-sm">
+        <div class="card-body p-4 p-md-5">
+          <h1 class="h3 fw-bold mb-1"><%= t('devis.title') %></h1>
+          <p class="text-muted mb-4"><%= t('devis.subtitle') %></p>
+          
+          <form method="POST" action="<%= url('/devis/step1') %>" enctype="multipart/form-data" id="devisStep1Form">
+            <input type="hidden" name="_formStartTime" value="<%= Date.now() %>">
+            
+            <!-- Honeypot fields (hidden) -->
+            <div style="position: absolute; left: -9999px;">
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+              <input type="text" name="url" tabindex="-1" autocomplete="off">
+              <input type="text" name="company" tabindex="-1" autocomplete="off">
+            </div>
+            
+            <!-- NPA (required) -->
+            <div class="mb-3">
+              <label for="npa" class="form-label fw-bold">
+                <%= t('devis.fields.npa') %> <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control <%= errors.npa ? 'is-invalid' : '' %>" 
+                id="npa" 
+                name="npa" 
+                value="<%= formData.npa || '' %>"
+                maxlength="4"
+                pattern="[0-9]{4}"
+                required
+              >
+              <% if (errors.npa) { %>
+              <div class="invalid-feedback"><%= t(errors.npa.msg) %></div>
+              <% } %>
+            </div>
+            
+            <!-- Building Type (optional) -->
+            <div class="mb-3">
+              <label for="buildingType" class="form-label fw-bold">
+                <%= t('devis.fields.buildingType') %>
+              </label>
+              <select class="form-select" id="buildingType" name="buildingType">
+                <option value="">-- <%= t('common.optional') %> --</option>
+                <option value="maison" <%= formData.buildingType === 'maison' ? 'selected' : '' %>><%= t('devis.fields.buildingTypes.maison') %></option>
+                <option value="appart_vide" <%= formData.buildingType === 'appart_vide' ? 'selected' : '' %>><%= t('devis.fields.buildingTypes.appart_vide') %></option>
+                <option value="appart_habite" <%= formData.buildingType === 'appart_habite' ? 'selected' : '' %>><%= t('devis.fields.buildingTypes.appart_habite') %></option>
+                <option value="bureau" <%= formData.buildingType === 'bureau' ? 'selected' : '' %>><%= t('devis.fields.buildingTypes.bureau') %></option>
+                <option value="autre" <%= formData.buildingType === 'autre' ? 'selected' : '' %>><%= t('devis.fields.buildingTypes.autre') %></option>
+              </select>
+            </div>
+            
+            <!-- Service Types (multi-checkbox, required) -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">
+                <%= t('devis.fields.serviceType') %> <span class="text-danger">*</span>
+              </label>
+              <% const selectedServices = Array.isArray(formData.serviceTypes) ? formData.serviceTypes : (formData.serviceTypes ? [formData.serviceTypes] : []); %>
+              <div class="form-check">
+                <input class="form-check-input <%= errors.serviceTypes ? 'is-invalid' : '' %>" type="checkbox" name="serviceTypes" value="poncage" id="service_poncage" <%= selectedServices.includes('poncage') ? 'checked' : '' %>>
+                <label class="form-check-label" for="service_poncage">
+                  <%= t('devis.fields.serviceTypes.poncage') %>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="serviceTypes" value="pose_parquet" id="service_pose_parquet" <%= selectedServices.includes('pose_parquet') ? 'checked' : '' %>>
+                <label class="form-check-label" for="service_pose_parquet">
+                  <%= t('devis.fields.serviceTypes.pose_parquet') %>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="serviceTypes" value="pose_plinthe" id="service_pose_plinthe" <%= selectedServices.includes('pose_plinthe') ? 'checked' : '' %>>
+                <label class="form-check-label" for="service_pose_plinthe">
+                  <%= t('devis.fields.serviceTypes.pose_plinthe') %>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="serviceTypes" value="reparation" id="service_reparation" <%= selectedServices.includes('reparation') ? 'checked' : '' %>>
+                <label class="form-check-label" for="service_reparation">
+                  <%= t('devis.fields.serviceTypes.reparation') %>
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="serviceTypes" value="autres" id="service_autres" <%= selectedServices.includes('autres') ? 'checked' : '' %>>
+                <label class="form-check-label" for="service_autres">
+                  <%= t('devis.fields.serviceTypes.autres') %>
+                </label>
+              </div>
+              <% if (errors.serviceTypes) { %>
+              <div class="text-danger small mt-1"><%= t(errors.serviceTypes.msg) %></div>
+              <% } %>
+            </div>
+            
+            <!-- Parquet Type -->
+            <div class="mb-3">
+              <label for="parquetType" class="form-label fw-bold">
+                <%= t('devis.fields.parquetType') %>
+              </label>
+              <select class="form-select" id="parquetType" name="parquetType">
+                <option value="">-- <%= t('common.optional') %> --</option>
+                <option value="massif" <%= formData.parquetType === 'massif' ? 'selected' : '' %>><%= t('devis.fields.parquetTypes.massif') %></option>
+                <option value="contrecolle" <%= formData.parquetType === 'contrecolle' ? 'selected' : '' %>><%= t('devis.fields.parquetTypes.contrecolle') %></option>
+                <option value="stratifie" <%= formData.parquetType === 'stratifie' ? 'selected' : '' %>><%= t('devis.fields.parquetTypes.stratifie') %></option>
+                <option value="ne_sais_pas" <%= formData.parquetType === 'ne_sais_pas' ? 'selected' : '' %>><%= t('devis.fields.parquetTypes.ne_sais_pas') %></option>
+              </select>
+            </div>
+            
+            <!-- Pose Type -->
+            <div class="mb-3">
+              <label for="poseType" class="form-label fw-bold">
+                <%= t('devis.fields.poseType') %>
+              </label>
+              <select class="form-select" id="poseType" name="poseType">
+                <option value="">-- <%= t('common.optional') %> --</option>
+                <option value="flottant" <%= formData.poseType === 'flottant' ? 'selected' : '' %>><%= t('devis.fields.poseTypes.flottant') %></option>
+                <option value="cloue" <%= formData.poseType === 'cloue' ? 'selected' : '' %>><%= t('devis.fields.poseTypes.cloue') %></option>
+                <option value="colle" <%= formData.poseType === 'colle' ? 'selected' : '' %>><%= t('devis.fields.poseTypes.colle') %></option>
+                <option value="ne_sais_pas" <%= formData.poseType === 'ne_sais_pas' ? 'selected' : '' %>><%= t('devis.fields.poseTypes.ne_sais_pas') %></option>
+              </select>
+            </div>
+            
+            <!-- Surface -->
+            <div class="mb-3">
+              <label for="surfaceM2" class="form-label fw-bold">
+                <%= t('devis.fields.surface') %>
+              </label>
+              <input 
+                type="number" 
+                class="form-control" 
+                id="surfaceM2" 
+                name="surfaceM2" 
+                value="<%= formData.surfaceM2 || '' %>"
+                min="1"
+                step="0.1"
+              >
+            </div>
+            
+            <!-- Délais -->
+            <div class="mb-3">
+              <label for="delais" class="form-label fw-bold">
+                <%= t('devis.fields.delais') %>
+              </label>
+              <select class="form-select" id="delais" name="delais">
+                <option value="">-- <%= t('common.optional') %> --</option>
+                <option value="a_definir" <%= formData.delais === 'a_definir' ? 'selected' : '' %>><%= t('devis.fields.delaisOptions.a_definir') %></option>
+                <option value="rapidement" <%= formData.delais === 'rapidement' ? 'selected' : '' %>><%= t('devis.fields.delaisOptions.rapidement') %></option>
+                <option value="dans_le_mois" <%= formData.delais === 'dans_le_mois' ? 'selected' : '' %>><%= t('devis.fields.delaisOptions.dans_le_mois') %></option>
+              </select>
+            </div>
+            
+            <!-- Message -->
+            <div class="mb-3">
+              <label for="message" class="form-label fw-bold">
+                <%= t('devis.fields.message') %>
+              </label>
+              <textarea 
+                class="form-control" 
+                id="message" 
+                name="message" 
+                rows="4"
+              ><%= formData.message || '' %></textarea>
+            </div>
+            
+            <!-- File Upload -->
+            <div class="mb-3">
+              <label for="files" class="form-label fw-bold">
+                <%= t('devis.fields.photos') %>
+              </label>
+              <input 
+                type="file" 
+                class="form-control <%= errors.files ? 'is-invalid' : '' %>" 
+                id="files" 
+                name="files" 
+                multiple
+                accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime,video/webm"
+              >
+              <div class="form-text"><%= t('devis.fields.photosHelp') %></div>
+              <% if (errors.files) { %>
+              <div class="invalid-feedback d-block"><%= errors.files.msg %></div>
+              <% } %>
+            </div>
+            
+            <!-- External Link -->
+            <div class="mb-4">
+              <label for="externalLink" class="form-label fw-bold">
+                <%= t('devis.fields.externalLink') %>
+              </label>
+              <input 
+                type="url" 
+                class="form-control" 
+                id="externalLink" 
+                name="externalLink" 
+                value="<%= formData.externalLink || '' %>"
+                placeholder="https://"
+              >
+              <div class="form-text"><%= t('devis.fields.externalLinkHelp') %></div>
+            </div>
+            
+            <!-- Turnstile -->
+            <% if (env.TURNSTILE_SITE_KEY) { %>
+            <div class="mb-4">
+              <div class="cf-turnstile" data-sitekey="<%= env.TURNSTILE_SITE_KEY %>" data-theme="light"></div>
+            </div>
+            <% } %>
+            
+            <!-- Submit -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <%= t('devis.continue') %> <i class="fas fa-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if (env.TURNSTILE_SITE_KEY) { %>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<% } %>

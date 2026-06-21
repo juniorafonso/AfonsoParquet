@@ -1,0 +1,46 @@
+{
+  "name": "afonso-parquet",
+  "version": "1.0.0",
+  "description": "Website vitrine pour Afonso Parquet - Rénovation de sols en parquet à Genève",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "parquet",
+    "geneve",
+    "poncage",
+    "pose",
+    "renovation"
+  ],
+  "author": "Afonso Parquet",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "axios": "^1.7.9",
+    "connect-session-sequelize": "^7.1.7",
+    "csrf-csrf": "^3.0.6",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.4.2",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.2",
+    "file-type": "^16.5.4",
+    "helmet": "^8.0.0",
+    "intl-tel-input": "^24.8.2",
+    "multer": "^2.0.0-rc.4",
+    "nodemailer": "^6.9.16",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

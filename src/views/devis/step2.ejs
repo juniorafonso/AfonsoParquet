@@ -1,0 +1,189 @@
+<% layout('layout') %>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      
+      <!-- Progress indicator -->
+      <div class="d-flex justify-content-between mb-5">
+        <div class="text-center flex-fill">
+          <div class="rounded-circle bg-success text-white d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+            <i class="fas fa-check"></i>
+          </div>
+          <p class="mt-2 mb-0 text-muted"><%= t('devis.step1') %></p>
+        </div>
+        <div class="text-center flex-fill">
+          <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+            2
+          </div>
+          <p class="mt-2 mb-0 fw-bold"><%= t('devis.step2') %></p>
+        </div>
+      </div>
+      
+      <div class="card shadow-sm">
+        <div class="card-body p-4 p-md-5">
+          <h1 class="h3 fw-bold mb-1"><%= t('devis.step2') %></h1>
+          <p class="text-muted mb-4"><%= t('devis.subtitle') %></p>
+          
+          <form method="POST" action="<%= url('/devis/submit') %>" id="devisStep2Form">
+            <input type="hidden" name="_formStartTime" value="<%= Date.now() %>">
+            
+            <!-- Honeypot fields (hidden) -->
+            <div style="position: absolute; left: -9999px;">
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+              <input type="text" name="url" tabindex="-1" autocomplete="off">
+            </div>
+            
+            <!-- Civilité (required) -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">
+                <%= t('devis.fields.civilite') %> <span class="text-danger">*</span>
+              </label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input <%= errors.civilite ? 'is-invalid' : '' %>" type="radio" name="civilite" id="civilite_m" value="M" <%= formData.civilite === 'M' ? 'checked' : '' %> required>
+                  <label class="form-check-label" for="civilite_m">
+                    <%= t('devis.fields.civiliteOptions.M') %>
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="civilite" id="civilite_mme" value="Mme" <%= formData.civilite === 'Mme' ? 'checked' : '' %> required>
+                  <label class="form-check-label" for="civilite_mme">
+                    <%= t('devis.fields.civiliteOptions.Mme') %>
+                  </label>
+                </div>
+              </div>
+              <% if (errors.civilite) { %>
+              <div class="text-danger small mt-1"><%= t(errors.civilite.msg) %></div>
+              <% } %>
+            </div>
+            
+            <!-- Prénom (required) -->
+            <div class="mb-3">
+              <label for="prenom" class="form-label fw-bold">
+                <%= t('devis.fields.prenom') %> <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control <%= errors.prenom ? 'is-invalid' : '' %>" 
+                id="prenom" 
+                name="prenom" 
+                value="<%= formData.prenom || '' %>"
+                required
+              >
+              <% if (errors.prenom) { %>
+              <div class="invalid-feedback"><%= t(errors.prenom.msg) %></div>
+              <% } %>
+            </div>
+            
+            <!-- Nom (required) -->
+            <div class="mb-3">
+              <label for="nom" class="form-label fw-bold">
+                <%= t('devis.fields.nom') %> <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control <%= errors.nom ? 'is-invalid' : '' %>" 
+                id="nom" 
+                name="nom" 
+                value="<%= formData.nom || '' %>"
+                required
+              >
+              <% if (errors.nom) { %>
+              <div class="invalid-feedback"><%= t(errors.nom.msg) %></div>
+              <% } %>
+            </div>
+            
+            <!-- Email (required) -->
+            <div class="mb-3">
+              <label for="email" class="form-label fw-bold">
+                <%= t('devis.fields.email') %> <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="email" 
+                class="form-control <%= errors.email ? 'is-invalid' : '' %>" 
+                id="email" 
+                name="email" 
+                value="<%= formData.email || '' %>"
+                required
+              >
+              <% if (errors.email) { %>
+              <div class="invalid-feedback"><%= t(errors.email.msg) %></div>
+              <% } %>
+            </div>
+            
+            <!-- Phone (required, with intl-tel-input) -->
+            <div class="mb-3">
+              <label for="phone" class="form-label fw-bold">
+                <%= t('devis.fields.phone') %> <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="tel" 
+                class="form-control <%= errors.phone ? 'is-invalid' : '' %>" 
+                id="phone" 
+                name="phone" 
+                value="<%= formData.phone || '' %>"
+                required
+              >
+              <% if (errors.phone) { %>
+              <div class="invalid-feedback"><%= t(errors.phone.msg) %></div>
+              <% } %>
+            </div>
+            
+            <!-- Consent (required) -->
+            <div class="mb-4">
+              <div class="form-check">
+                <input class="form-check-input <%= errors.consent ? 'is-invalid' : '' %>" type="checkbox" name="consent" id="consent" required>
+                <label class="form-check-label" for="consent">
+                  <%- t('devis.fields.consent').replace('{privacyLink}', '<a href="' + url('/privacy') + '" target="_blank">' + t('devis.fields.privacyLink') + '</a>') %>
+                  <span class="text-danger">*</span>
+                </label>
+                <% if (errors.consent) { %>
+                <div class="invalid-feedback"><%= t(errors.consent.msg) %></div>
+                <% } %>
+              </div>
+            </div>
+            
+            <!-- Turnstile -->
+            <% if (env.TURNSTILE_SITE_KEY) { %>
+            <div class="mb-4">
+              <div class="cf-turnstile" data-sitekey="<%= env.TURNSTILE_SITE_KEY %>" data-theme="light"></div>
+            </div>
+            <% } %>
+            
+            <!-- Submit -->
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-paper-plane me-2"></i><%= t('devis.submit') %>
+              </button>
+              <a href="<%= url('/devis') %>" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i><%= locale === 'fr' ? 'Retour' : 'Back' %>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- intl-tel-input JS -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.8.2/build/js/intlTelInput.min.js"></script>
+<script>
+  // Initialize intl-tel-input
+  const phoneInput = document.querySelector("#phone");
+  const iti = window.intlTelInput(phoneInput, {
+    initialCountry: "ch",
+    preferredCountries: ["ch", "fr", "de", "it", "li"],
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.8.2/build/js/utils.js"
+  });
+  
+  // On form submit, set full international number
+  document.querySelector("#devisStep2Form").addEventListener("submit", function(e) {
+    phoneInput.value = iti.getNumber();
+  });
+</script>
+
+<% if (env.TURNSTILE_SITE_KEY) { %>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<% } %>

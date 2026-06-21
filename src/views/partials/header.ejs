@@ -1,0 +1,63 @@
+<%
+/**
+ * Header Partial
+ * Navigation bar with language switcher
+ */
+%>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="<%= url('/') %>">
+        <strong>Afonso Parquet</strong>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="<%= url('/') %>"><%= t('nav.home') %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= url('/services') %>"><%= t('nav.services') %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= url('/realisations') %>"><%= t('nav.realisations') %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= url('/about') %>"><%= t('nav.about') %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= url('/contact') %>"><%= t('nav.contact') %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary text-white ms-lg-2" href="<%= url('/devis') %>">
+              <i class="fas fa-file-invoice"></i> <%= t('nav.devis') %>
+            </a>
+          </li>
+          
+          <!-- Language Switcher -->
+          <li class="nav-item dropdown ms-lg-3">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-globe"></i> <%= locale.toUpperCase() %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+              <li>
+                <a class="dropdown-item <%= locale === 'fr' ? 'active' : '' %>" href="<%= alternateUrl('fr') %>">
+                  Français (FR)
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item <%= locale === 'en' ? 'active' : '' %>" href="<%= alternateUrl('en') %>">
+                  English (EN)
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

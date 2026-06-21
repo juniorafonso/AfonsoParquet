@@ -1,0 +1,55 @@
+<% layout('layout') %>
+
+<div class="container my-5">
+  <h1 class="fw-bold mb-4"><%= t('legal.title') %></h1>
+  
+  <% if (locale === 'fr') { %>
+    <h2 class="h4 mt-4">Éditeur du site</h2>
+    <p>
+      <strong>Afonso Parquet</strong><br>
+      Genève, Suisse
+    </p>
+    
+    <h2 class="h4 mt-4">Hébergement</h2>
+    <p>
+      Ce site est hébergé en Suisse.
+    </p>
+    
+    <h2 class="h4 mt-4">Propriété intellectuelle</h2>
+    <p>
+      L'ensemble de ce site relève de la législation suisse et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.
+    </p>
+    
+    <h2 class="h4 mt-4">Données personnelles</h2>
+    <p>
+      Conformément à la LPD (Loi fédérale sur la protection des données) et au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression des données vous concernant. Pour exercer ce droit, veuillez nous contacter via le <a href="<%= url('/contact') %>">formulaire de contact</a>.
+    </p>
+    <p>
+      Pour plus d'informations sur la collecte et le traitement de vos données, consultez notre <a href="<%= url('/privacy') %>">Politique de confidentialité</a>.
+    </p>
+  <% } else { %>
+    <h2 class="h4 mt-4">Website Publisher</h2>
+    <p>
+      <strong>Afonso Parquet</strong><br>
+      Geneva, Switzerland
+    </p>
+    
+    <h2 class="h4 mt-4">Hosting</h2>
+    <p>
+      This website is hosted in Switzerland.
+    </p>
+    
+    <h2 class="h4 mt-4">Intellectual Property</h2>
+    <p>
+      The entire website is subject to Swiss and international legislation on copyright and intellectual property. All reproduction rights are reserved, including for downloadable documents and iconographic and photographic representations.
+    </p>
+    
+    <h2 class="h4 mt-4">Personal Data</h2>
+    <p>
+      In accordance with the LPD (Federal Act on Data Protection) and GDPR, you have the right to access, rectify and delete data concerning you. To exercise this right, please contact us via the <a href="<%= url('/contact') %>">contact form</a>.
+    </p>
+    <p>
+      For more information on the collection and processing of your data, see our <a href="<%= url('/privacy') %>">Privacy Policy</a>.
+    </p>
+  <% } %>
+</div>

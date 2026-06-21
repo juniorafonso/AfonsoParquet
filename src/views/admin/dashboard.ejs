@@ -1,0 +1,126 @@
+<% layout('admin/layout-admin') %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h3 mb-0">Dashboard - Devis Requests</h1>
+</div>
+
+<!-- Status Filter Tabs -->
+<ul class="nav nav-tabs mb-4">
+  <li class="nav-item">
+    <a class="nav-link <%= statusFilter === 'all' ? 'active' : '' %>" href="/admin/dashboard?status=all">
+      All <span class="badge bg-secondary ms-1"><%= counts.all %></span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%= statusFilter === 'new' ? 'active' : '' %>" href="/admin/dashboard?status=new">
+      New <span class="badge bg-primary ms-1"><%= counts.new %></span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%= statusFilter === 'in_progress' ? 'active' : '' %>" href="/admin/dashboard?status=in_progress">
+      In Progress <span class="badge bg-warning ms-1"><%= counts.in_progress %></span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%= statusFilter === 'done' ? 'active' : '' %>" href="/admin/dashboard?status=done">
+      Done <span class="badge bg-success ms-1"><%= counts.done %></span>
+    </a>
+  </li>
+</ul>
+
+<!-- Devis List -->
+<div class="card">
+  <div class="card-body p-0">
+    <% if (devisRequests.length === 0) { %>
+    <div class="text-center py-5 text-muted">
+      <i class="fas fa-inbox fa-3x mb-3"></i>
+      <p>No devis requests found</p>
+    </div>
+    <% } else { %>
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>NPA</th>
+            <th>Services</th>
+            <th>Media</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% devisRequests.forEach(devis => { %>
+          <tr class="<%= devis.isOld ? 'old-warning' : '' %>">
+            <td><strong>#<%= devis.id %></strong></td>
+            <td>
+              <%= devis.createdAt.toLocaleDateString('fr-CH') %>
+              <% if (devis.isOld) { %>
+              <br><small class="text-warning"><i class="fas fa-exclamation-triangle"></i> >90 days</small>
+              <% } %>
+            </td>
+            <td><%= devis.prenom %> <%= devis.nom %></td>
+            <td><%= devis.email %></td>
+            <td><%= devis.npa %></td>
+            <td>
+              <% const services = devis.serviceTypes || []; %>
+              <% if (services.length > 0) { %>
+                <small><%= services.slice(0, 2).join(', ') %></small>
+                <% if (services.length > 2) { %>
+                  <br><small class="text-muted">+<%= services.length - 2 %> more</small>
+                <% } %>
+              <% } %>
+            </td>
+            <td>
+              <% if (devis.media && devis.media.length > 0) { %>
+              <i class="fas fa-paperclip text-success"></i> <%= devis.media.length %>
+              <% } else { %>
+              <span class="text-muted">-</span>
+              <% } %>
+            </td>
+            <td>
+              <% if (devis.status === 'new') { %>
+              <span class="badge badge-status bg-primary">New</span>
+              <% } else if (devis.status === 'in_progress') { %>
+              <span class="badge badge-status bg-warning text-dark">In Progress</span>
+              <% } else if (devis.status === 'done') { %>
+              <span class="badge badge-status bg-success">Done</span>
+              <% } %>
+            </td>
+            <td>
+              <a href="/admin/devis/<%= devis.id %>" class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-eye"></i>
+              </a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<!-- Pagination -->
+<% if (totalPages > 1) { %>
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="pagination justify-content-center">
+    <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+      <a class="page-link" href="/admin/dashboard?status=<%= statusFilter %>&page=<%= currentPage - 1 %>">Previous</a>
+    </li>
+    
+    <% for (let i = 1; i <= totalPages; i++) { %>
+    <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+      <a class="page-link" href="/admin/dashboard?status=<%= statusFilter %>&page=<%= i %>"><%= i %></a>
+    </li>
+    <% } %>
+    
+    <li class="page-item <%= currentPage === totalPages ? 'disabled' : '' %>">
+      <a class="page-link" href="/admin/dashboard?status=<%= statusFilter %>&page=<%= currentPage + 1 %>">Next</a>
+    </li>
+  </ul>
+</nav>
+<% } %>

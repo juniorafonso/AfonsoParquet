@@ -1,0 +1,24 @@
+<%
+/**
+ * Cookie Consent Banner Partial
+ * Displays banner for GDPR/nLPD compliance
+ * Controlled by cookie-consent.js
+ */
+%>
+<div id="cookie-consent-banner" role="dialog" aria-live="polite" aria-label="<%= t('cookie.title') %>">
+  <div class="container">
+    <p>
+      <strong><%= t('cookie.title') %></strong><br>
+      <%= t('cookie.message') %>
+      <a href="<%= url('/privacy') %>"><%= t('cookie.learnMore') %></a>
+    </p>
+    <div class="btn-group">
+      <button type="button" id="cookie-accept" class="btn btn-primary">
+        <i class="fas fa-check"></i> <%= t('cookie.accept') %>
+      </button>
+      <button type="button" id="cookie-decline" class="btn btn-outline-light">
+        <i class="fas fa-times"></i> <%= t('cookie.decline') %>
+      </button>
+    </div>
+  </div>
+</div>

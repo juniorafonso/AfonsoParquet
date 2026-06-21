@@ -1,0 +1,77 @@
+/* Main stylesheet for Afonso Parquet */
+
+/* ====================================
+   Cookie Consent Banner
+   ==================================== */
+#cookie-consent-banner {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(33, 37, 41, 0.98);
+  color: #fff;
+  padding: 1.5rem 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+#cookie-consent-banner.show {
+  transform: translateY(0);
+}
+
+#cookie-consent-banner .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+#cookie-consent-banner p {
+  margin: 0;
+  flex: 1;
+  min-width: 300px;
+}
+
+#cookie-consent-banner a {
+  color: #0dcaf0;
+  text-decoration: underline;
+}
+
+#cookie-consent-banner a:hover {
+  color: #66d9ef;
+}
+
+#cookie-consent-banner .btn-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+#cookie-consent-banner .btn {
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #cookie-consent-banner .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  #cookie-consent-banner .btn-group {
+    width: 100%;
+  }
+  
+  #cookie-consent-banner .btn {
+    flex: 1;
+  }
+}
+
+/* ====================================
+   Custom styles (to be added)
+   ==================================== */
+

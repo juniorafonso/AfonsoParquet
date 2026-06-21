@@ -1,0 +1,230 @@
+{
+  "site": {
+    "title": "Afonso Parquet - Rénovation de Parquet à Genève",
+    "description": "Spécialiste de la rénovation et pose de parquet à Genève et Suisse romande. Ponçage, vitrification, pose et réparation.",
+    "keywords": "parquet, ponçage, pose, rénovation, vitrification, Genève, Suisse romande, plinthe, réparation"
+  },
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "realisations": "Réalisations",
+    "about": "À propos",
+    "devis": "Demande de devis",
+    "contact": "Contact"
+  },
+  "footer": {
+    "company": "Afonso Parquet",
+    "description": "Spécialiste de la rénovation de parquet à Genève",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "followUs": "Suivez-nous",
+    "rights": "Tous droits réservés"
+  },
+  "home": {
+    "hero": {
+      "title": "Rénovation et Pose de Parquet",
+      "subtitle": "Votre spécialiste à Genève et Suisse romande",
+      "cta": "Demander un devis"
+    },
+    "services": {
+      "title": "Nos Services",
+      "subtitle": "Une expertise complète pour vos sols en parquet"
+    },
+    "realisations": {
+      "title": "Nos Réalisations",
+      "subtitle": "Découvrez nos projets récents",
+      "viewAll": "Voir toutes les réalisations"
+    },
+    "cta": {
+      "title": "Un projet en tête ?",
+      "subtitle": "Obtenez votre devis gratuit en moins de 24h",
+      "button": "Demander un devis gratuit"
+    }
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Des prestations de qualité pour tous vos besoins en parquet",
+    "poncage": {
+      "title": "Ponçage de Parquet",
+      "desc": "Rénovation complète de votre parquet avec ponçage professionnel et vitrification."
+    },
+    "pose": {
+      "title": "Pose de Parquet",
+      "desc": "Installation de parquet massif, contrecollé ou stratifié selon vos besoins."
+    },
+    "plinthe": {
+      "title": "Pose de Plinthe",
+      "desc": "Finitions parfaites avec la pose de plinthes assorties à votre parquet."
+    },
+    "reparation": {
+      "title": "Réparation",
+      "desc": "Réparation de parquet abîmé, remplacement de lames et retouches."
+    },
+    "vitrification": {
+      "title": "Vitrification",
+      "desc": "Protection durable de votre parquet avec une vitrification de qualité."
+    }
+  },
+  "devis": {
+    "title": "Demande de Devis",
+    "subtitle": "Décrivez votre projet et recevez une réponse sous 24h",
+    "step1": "Votre projet",
+    "step2": "Vos coordonnées",
+    "continue": "Continuer",
+    "submit": "Envoyer la demande",
+    "success": {
+      "title": "Demande envoyée !",
+      "message": "Nous avons bien reçu votre demande de devis. Nous vous répondrons dans les 24 heures.",
+      "back": "Retour à l'accueil"
+    },
+    "fields": {
+      "npa": "Code postal (NPA)",
+      "buildingType": "Type de bâtiment",
+      "buildingTypes": {
+        "maison": "Maison",
+        "appart_vide": "Appartement vide",
+        "appart_habite": "Appartement habité",
+        "bureau": "Bureau",
+        "autre": "Autre"
+      },
+      "serviceType": "Type de service",
+      "serviceTypes": {
+        "poncage": "Ponçage",
+        "pose_parquet": "Pose de parquet",
+        "pose_plinthe": "Pose de plinthe",
+        "reparation": "Réparation",
+        "autres": "Autres"
+      },
+      "parquetType": "Type de parquet",
+      "parquetTypes": {
+        "massif": "Massif",
+        "contrecolle": "Contrecollé",
+        "stratifie": "Stratifié",
+        "ne_sais_pas": "Ne sais pas"
+      },
+      "poseType": "Type de pose",
+      "poseTypes": {
+        "flottant": "Parquet flottant",
+        "cloue": "Parquet cloué",
+        "colle": "Parquet collé",
+        "ne_sais_pas": "Ne sais pas"
+      },
+      "surface": "Surface (m²)",
+      "delais": "Quels sont vos délais ?",
+      "delaisOptions": {
+        "a_definir": "À définir",
+        "rapidement": "Rapidement",
+        "dans_le_mois": "Dans le mois"
+      },
+      "message": "Description des travaux",
+      "photos": "Photos / Vidéos",
+      "photosHelp": "Vous pouvez envoyer jusqu'à 10 photos et 2 vidéos (max 100 MB par vidéo)",
+      "externalLink": "Ou lien externe",
+      "externalLinkHelp": "Lien WeTransfer, Google Drive, YouTube, etc.",
+      "civilite": "Civilité",
+      "civiliteOptions": {
+        "M": "Monsieur",
+        "Mme": "Madame"
+      },
+      "prenom": "Prénom",
+      "nom": "Nom",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "consent": "En envoyant ce formulaire, j'accepte d'être contacté et que mes données soient traitées conformément à la {privacyLink}.",
+      "privacyLink": "politique de confidentialité"
+    },
+    "errors": {
+      "required": "Ce champ est obligatoire",
+      "email": "Adresse e-mail invalide",
+      "npa": "Code postal invalide",
+      "serviceType": "Veuillez sélectionner au moins un service",
+      "phone": "Numéro de téléphone invalide",
+      "fileSize": "Fichier trop volumineux",
+      "fileType": "Type de fichier non autorisé",
+      "totalSize": "Taille totale des fichiers dépassée"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Connexion Admin",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "error": "Identifiants incorrects"
+    },
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "devis": "Demandes de devis",
+      "projects": "Réalisations",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    },
+    "dashboard": {
+      "title": "Tableau de Bord",
+      "newDevis": "Nouvelles demandes",
+      "inProgress": "En cours",
+      "done": "Terminées"
+    },
+    "devis": {
+      "title": "Demandes de Devis",
+      "new": "Nouveau",
+      "inProgress": "En cours",
+      "done": "Terminé",
+      "viewDetails": "Voir détails",
+      "markAs": "Marquer comme",
+      "delete": "Supprimer",
+      "deleteOld": "Cette demande a plus de 90 jours. Considérez la suppression.",
+      "details": {
+        "title": "Détails de la demande",
+        "date": "Date",
+        "status": "Statut",
+        "contact": "Contact",
+        "project": "Projet",
+        "media": "Photos et vidéos"
+      }
+    },
+    "projects": {
+      "title": "Réalisations",
+      "add": "Ajouter une réalisation",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "publish": "Publier",
+      "unpublish": "Dépublier"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "changePassword": "Changer le mot de passe",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "save": "Enregistrer"
+    }
+  },
+  "legal": {
+    "title": "Mentions Légales",
+    "privacy": "Politique de Confidentialité"
+  },
+  "cookie": {
+    "title": "Ce site utilise des cookies",
+    "message": "Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic. En acceptant, vous consentez à l'utilisation de Google Analytics et du Meta Pixel.",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "learnMore": "En savoir plus"
+  },
+  "common": {
+    "readMore": "En savoir plus",
+    "close": "Fermer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "success": "Opération réussie",
+    "required": "Obligatoire",
+    "optional": "Optionnel"
+  }
+}

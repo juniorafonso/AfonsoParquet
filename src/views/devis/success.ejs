@@ -1,0 +1,40 @@
+<% layout('layout') %>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 text-center">
+      <div class="mb-4">
+        <div class="rounded-circle bg-success text-white d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+          <i class="fas fa-check fa-3x"></i>
+        </div>
+      </div>
+      
+      <h1 class="h2 fw-bold mb-3"><%= t('devis.success.title') %></h1>
+      <p class="lead text-muted mb-4">
+        <%= t('devis.success.message') %>
+      </p>
+      
+      <div class="alert alert-info d-inline-block">
+        <i class="fas fa-clock me-2"></i>
+        <strong><%= locale === 'fr' ? 'Réponse sous 24 heures' : 'Response within 24 hours' %></strong>
+      </div>
+      
+      <div class="mt-5">
+        <a href="<%= url('/') %>" class="btn btn-primary btn-lg">
+          <i class="fas fa-home me-2"></i><%= t('devis.success.back') %>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Fire Lead tracking event -->
+<script>
+  // Track Lead conversion event
+  if (typeof window.trackLeadEvent === 'function') {
+    window.trackLeadEvent('generate_lead', {
+      currency: 'CHF',
+      value: 0
+    });
+  }
+</script>
