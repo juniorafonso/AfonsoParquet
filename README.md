@@ -86,63 +86,41 @@ ADMIN_EMAIL=admin@afonsoparquet.ch
 
 ## Déploiement (Docker + Dockge)
 
-### Prérequis sur le serveur
+> 📖 **Guia completo:** [DEPLOY.md](DEPLOY.md)
 
-- Docker + Dockge
-- Reverse proxy (Traefik / Nginx Proxy Manager) configuré avec SSL pour `afonsoparquet.ch`
+### Quick Start
 
-### Pull de l'image
+1. **Verifique o build automático:**
+   - Push para `main` dispara build automático no GitHub Actions
+   - Imagem publicada em: `ghcr.io/juniorafonso/afonsoparquet:latest`
+   - Verifique status: https://github.com/juniorafonso/AfonsoParquet/actions
 
-L'image Docker est automatiquement buildée et publiée sur GitHub Container Registry (GHCR) à chaque push sur `main`.
+2. **Deploy via Dockge:**
+   - Use o `docker-compose.yml` deste repo
+   - Configure variáveis de ambiente (SESSION_SECRET, ADMIN_PASSWORD, SMTP)
+   - Ajuste labels Traefik ou use Nginx Proxy Manager
+   - Start!
 
-Dans Dockge, créez une nouvelle stack avec le `docker-compose.yml` (ajustez les variables d'environnement):
+3. **Primeiro acesso:**
+   - URL: `https://afonsoparquet.ch/admin/login`
+   - Username: `admin`
+   - Password: o que configurou em `ADMIN_PASSWORD`
+   - ⚠️ **Mude a senha imediatamente!**
 
-```yaml
-version: '3.8'
-services:
-  afonso-parquet:
-    image: ghcr.io/[votre-user]/afonso-parquet:latest
-    container_name: afonso-parquet
-    restart: unless-stopped
-    environment:
-      - NODE_ENV=production
-      - PORT=3000
-      - BASE_URL=https://afonsoparquet.ch
-      - SESSION_SECRET=${SESSION_SECRET}
-      - ADMIN_USERNAME=${ADMIN_USERNAME}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - SMTP_HOST=${SMTP_HOST}
-      - SMTP_PORT=${SMTP_PORT}
-      - SMTP_USER=${SMTP_USER}
-      - SMTP_PASS=${SMTP_PASS}
-      - ADMIN_EMAIL=${ADMIN_EMAIL}
-      - GA4_MEASUREMENT_ID=${GA4_MEASUREMENT_ID}
-      - META_PIXEL_ID=${META_PIXEL_ID}
-      - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
-      - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
-    volumes:
-      - ./data:/app/data
-      - ./uploads:/app/uploads
-    networks:
-      - proxy-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.afonso-parquet.rule=Host(`afonsoparquet.ch`)"
-      - "traefik.http.routers.afonso-parquet.entrypoints=websecure"
-      - "traefik.http.routers.afonso-parquet.tls.certresolver=letsencrypt"
-      - "traefik.http.services.afonso-parquet.loadbalancer.server.port=3000"
+### Atualização
 
-networks:
-  proxy-network:
-    external: true
+```bash
+# Via Dockge: clique em "Pull & Restart"
+# Ou via CLI:
+docker-compose pull
+docker-compose up -d
 ```
 
-### Premier déploiement
+### Backup
 
-1. Configurez les variables d'environnement dans Dockge
-2. Démarrez la stack
-3. L'admin sera créé automatiquement au premier boot avec `ADMIN_USERNAME` et `ADMIN_PASSWORD`
-4. Connectez-vous à `/admin` et changez le mot de passe
+```bash
+tar -czf backup-$(date +%Y%m%d).tar.gz ./data ./uploads
+```
 
 ## Structure du projet
 
