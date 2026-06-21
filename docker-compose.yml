@@ -1,0 +1,77 @@
+services:
+  afonso-parquet:
+    image: ghcr.io/juniorafonso/afonsoparquet:latest
+    container_name: afonso-parquet
+    restart: unless-stopped
+    
+    environment:
+      # Server
+      - NODE_ENV=production
+      - PORT=3000
+      - BASE_URL=https://afonsoparquet.ch
+      
+      # Session
+      - SESSION_SECRET=${SESSION_SECRET}
+      
+      # Admin (used only for initial seed)
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      
+      # SMTP
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_SECURE=${SMTP_SECURE:-false}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_FROM_NAME=${SMTP_FROM_NAME:-Afonso Parquet}
+      - SMTP_FROM_EMAIL=${SMTP_FROM_EMAIL:-contact@afonsoparquet.ch}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      
+      # Analytics
+      - GA4_MEASUREMENT_ID=${GA4_MEASUREMENT_ID}
+      - META_PIXEL_ID=${META_PIXEL_ID}
+      
+      # SEO
+      - GOOGLE_SITE_VERIFICATION=${GOOGLE_SITE_VERIFICATION}
+      - BING_SITE_VERIFICATION=${BING_SITE_VERIFICATION}
+      
+      # Company
+      - COMPANY_PHONE=${COMPANY_PHONE}
+      
+      # Turnstile
+      - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
+      - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
+      
+      # Social
+      - INSTAGRAM_URL=${INSTAGRAM_URL:-https://instagram.com/afonsoparquet}
+      - FACEBOOK_URL=${FACEBOOK_URL:-https://facebook.com/afonsoparquet}
+      
+      # Upload limits
+      - MAX_FILE_SIZE_MB=${MAX_FILE_SIZE_MB:-100}
+      - MAX_PHOTOS_PER_DEVIS=${MAX_PHOTOS_PER_DEVIS:-10}
+      - MAX_VIDEOS_PER_DEVIS=${MAX_VIDEOS_PER_DEVIS:-2}
+    
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    
+    networks:
+      - proxy
+    
+    labels:
+      # Traefik labels (adjust if using Nginx Proxy Manager)
+      - "traefik.enable=true"
+      - "traefik.http.routers.afonso-parquet.rule=Host(`afonsoparquet.ch`) || Host(`www.afonsoparquet.ch`)"
+      - "traefik.http.routers.afonso-parquet.entrypoints=websecure"
+      - "traefik.http.routers.afonso-parquet.tls.certresolver=letsencrypt"
+      - "traefik.http.services.afonso-parquet.loadbalancer.server.port=3000"
+      
+      # Redirect www to non-www
+      - "traefik.http.middlewares.afonso-parquet-redirect.redirectregex.regex=^https://www\\.(.+)"
+      - "traefik.http.middlewares.afonso-parquet-redirect.redirectregex.replacement=https://$${1}"
+      - "traefik.http.middlewares.afonso-parquet-redirect.redirectregex.permanent=true"
+      - "traefik.http.routers.afonso-parquet.middlewares=afonso-parquet-redirect"
+
+networks:
+  proxy:
+    external: true
